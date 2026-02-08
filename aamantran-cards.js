@@ -1,7 +1,4 @@
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
 
 // ===== Card Data - Using images from /preet-card-images/ folder =====
 // Aamantran cards use card-026 to card-035 (engagement, sangeet, reception events)
@@ -74,11 +71,11 @@ const initCarousel = (filter = 'all') => {
 
         item.innerHTML = `
             <img src="${card.image}" alt="${card.altText || card.title}" loading="lazy">
-            <span class="card-code-badge">Code: ${card.code}</span>
+            <span class="images/card-code-badge">Code: ${card.code}</span>
             <div class="carousel-item-content">
                 <h3>${card.title}</h3>
                 <p class="price">${card.priceRange}</p>
-                <a href="https://wa.me/919824319135?text=${whatsappMsg}" class="card-cta-btn" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/919824319135?text=${whatsappMsg}" class="images/card-cta-btn" target="_blank" rel="noopener noreferrer">
                     Customize This Design
                 </a>
             </div>
@@ -139,11 +136,11 @@ const initBentoGrid = () => {
 
         item.innerHTML = `
             <img src="${card.image}" alt="${card.altText || card.title}" loading="lazy">
-            <span class="card-code-badge">Code: ${card.code}</span>
+            <span class="images/card-code-badge">Code: ${card.code}</span>
             <div class="bento-item-overlay">
                 <h3>${card.title}</h3>
                 <p class="price">${card.priceRange}</p>
-                <a href="https://wa.me/919824319135?text=${whatsappMsg}" class="card-cta-btn" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/919824319135?text=${whatsappMsg}" class="images/card-cta-btn" target="_blank" rel="noopener noreferrer">
                     Customize
                 </a>
             </div>

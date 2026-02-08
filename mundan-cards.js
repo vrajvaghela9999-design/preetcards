@@ -3,10 +3,7 @@
    3D Animations, Confetti, Photo Upload
    ======================================== */
 
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
 
 // ===== Card Data - Using images from /preet-card-images/ folder =====
 // Mundan cards use card-036 to card-041 (baby-themed ceremony cards)
@@ -274,12 +271,12 @@ const initFrameGallery = (filter = 'all') => {
             <div class="frame-card-inner">
                 <div class="frame-image">
                     <img src="${card.image}" alt="${card.altText || card.title}" loading="lazy">
-                    <span class="card-code-badge">Code: ${card.code}</span>
+                    <span class="images/card-code-badge">Code: ${card.code}</span>
                 </div>
                 <div class="frame-content">
                     <h3>${card.title}</h3>
                     <p class="price">${card.priceRange}</p>
-                    <a href="https://wa.me/919824319135?text=${whatsappMsg}" class="card-cta-btn" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/919824319135?text=${whatsappMsg}" class="images/card-cta-btn" target="_blank" rel="noopener noreferrer">
                         Customize This Design
                     </a>
                 </div>
