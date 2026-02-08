@@ -1,0 +1,298 @@
+/* ========================================
+   Testimonials Carousel Styles
+   ======================================== */
+
+.testimonials-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.testimonials-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #F5F1E7;
+    margin-bottom: 10px;
+}
+
+.testimonials-header p {
+    color: rgba(245, 241, 231, 0.7);
+    font-size: 1.1rem;
+}
+
+/* Carousel Container */
+#testimonials-carousel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+}
+
+.testimonials-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 20px;
+}
+
+/* Testimonial Card */
+.testimonial-card {
+    flex: 0 0 calc(33.333% - 14px);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.1);
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.testimonial-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #D4AF37;
+}
+
+.testimonial-info {
+    flex: 1;
+}
+
+.testimonial-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #F5F1E7;
+    margin-bottom: 5px;
+}
+
+.testimonial-rating {
+    color: #D4AF37;
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+.testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(245, 241, 231, 0.85);
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Carousel Arrows */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50%;
+    color: #D4AF37;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    opacity: 0;
+}
+
+#testimonials-carousel:hover .carousel-arrow {
+    opacity: 1;
+}
+
+.carousel-arrow:hover {
+    background: #D4AF37;
+    color: #0a0a0a;
+}
+
+.carousel-arrow svg {
+    width: 24px;
+    height: 24px;
+}
+
+.carousel-prev {
+    left: -60px;
+}
+
+.carousel-next {
+    right: -60px;
+}
+
+/* Carousel Dots */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot:hover {
+    background: rgba(212, 175, 55, 0.5);
+}
+
+.carousel-dot.active {
+    background: #D4AF37;
+    transform: scale(1.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    #testimonials-carousel {
+        padding: 0 20px;
+    }
+
+    .testimonial-card {
+        flex: 0 0 100%;
+    }
+
+    .carousel-arrow {
+        display: none;
+    }
+
+    .carousel-prev {
+        left: 10px;
+    }
+
+    .carousel-next {
+        right: 10px;
+    }
+}
+
+/* ========================================
+   Page Loading Animation
+   ======================================== */
+
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.page-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #D4AF37;
+    margin-bottom: 30px;
+    animation: logoGlow 2s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.4);
+    }
+}
+
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+.loader-spinner::before,
+.loader-spinner::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.loader-spinner::before {
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top-color: #D4AF37;
+    animation: spin 1s linear infinite;
+}
+
+.loader-spinner::after {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 3px solid transparent;
+    border-top-color: #800020;
+    animation: spin 0.6s linear infinite reverse;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader-text {
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: rgba(245, 241, 231, 0.6);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}

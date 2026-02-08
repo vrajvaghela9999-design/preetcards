@@ -1,0 +1,934 @@
+/**
+ * Mobile Responsive Optimization
+ * Comprehensive mobile-first styling for all breakpoints
+ * Standardized breakpoints: 480px (mobile), 768px (tablet), 992px+ (desktop)
+ */
+
+/* ================================
+   BASE MOBILE OPTIMIZATIONS
+   ================================ */
+
+/* Prevent horizontal scroll */
+html,
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* Touch-friendly base styles */
+@media (max-width: 768px) {
+
+    /* Larger tap targets on mobile */
+    button,
+    a,
+    input,
+    select,
+    textarea {
+        min-height: 44px;
+    }
+
+    /* Input font size to prevent iOS zoom */
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+
+    /* Hide keyboard when scrolling */
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Reduce motion for performance */
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+/* ================================
+   NAVIGATION - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0;
+    }
+
+    .nav-container {
+        padding: 0 16px;
+        height: 60px;
+    }
+
+    /* Smaller logo on mobile */
+    .nav-logo {
+        font-size: 1.4rem;
+        max-width: 120px;
+    }
+
+    .logo-icon {
+        font-size: 1.2rem;
+    }
+
+    /* Hamburger - 44x44px tap target */
+    .nav-toggle {
+        display: flex;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Menu items touch-friendly */
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 16px 20px;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Disable 3D transforms on mobile navigation */
+    .nav-menu li,
+    .nav-menu.active li {
+        transform: translateX(0) !important;
+    }
+
+    .nav-toggle,
+    .nav-toggle.active {
+        transform: none !important;
+    }
+}
+
+/* ================================
+   HERO SECTIONS - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 80vh;
+        padding: 100px 16px 60px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+        order: 1;
+    }
+
+    .hero-cards {
+        order: 2;
+        display: none;
+        /* Hide 3D cards on mobile for performance */
+    }
+
+    /* Mobile typography */
+    .hero-title {
+        font-size: 32px !important;
+        line-height: 1.2;
+    }
+
+    .title-accent {
+        font-size: 20px !important;
+    }
+
+    .title-year {
+        font-size: 14px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 12px;
+        letter-spacing: 0.2em;
+    }
+
+    .hero-description {
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 100%;
+        margin-bottom: 24px;
+    }
+
+    /* Full-width buttons on mobile */
+    .hero-buttons {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 24px;
+        font-size: 16px;
+    }
+
+    /* Hide scroll indicator on mobile */
+    .scroll-indicator {
+        display: none;
+    }
+
+    /* Hide decorative elements on mobile */
+    .hero-deco,
+    .hero-deco-1,
+    .hero-deco-2 {
+        display: none;
+    }
+
+    /* Simplify parallax backgrounds */
+    .hero-bg-overlay,
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.3) !important;
+    }
+}
+
+/* Page-specific hero mobile */
+@media (max-width: 768px) {
+
+    .custom-hero,
+    .contact-hero,
+    .lagna-hero,
+    .aamantran-hero,
+    .mundan-hero {
+        min-height: 50vh;
+        padding: 90px 16px 50px;
+    }
+
+    .custom-hero .hero-title,
+    .contact-hero .hero-title,
+    .lagna-hero .hero-title,
+    .aamantran-hero .hero-title,
+    .mundan-hero .hero-title {
+        font-size: 28px !important;
+    }
+
+    .title-gujarati {
+        font-size: 16px !important;
+    }
+}
+
+/* ================================
+   TYPOGRAPHY - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+
+    /* Responsive headings */
+    h1 {
+        font-size: 32px !important;
+    }
+
+    h2,
+    .section-title {
+        font-size: 24px !important;
+    }
+
+    h3 {
+        font-size: 20px !important;
+    }
+
+    h4 {
+        font-size: 18px !important;
+    }
+
+    /* Body text */
+    body,
+    p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .section-description {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .section-tag {
+        font-size: 12px;
+        letter-spacing: 0.15em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 28px !important;
+    }
+
+    h2,
+    .section-title {
+        font-size: 22px !important;
+    }
+
+    h3 {
+        font-size: 18px !important;
+    }
+}
+
+/* ================================
+   CARD GALLERIES - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+
+    /* Single column for card galleries */
+    .gallery-grid,
+    .cards-grid,
+    .bento-grid,
+    .collections-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px;
+        padding: 0 16px;
+    }
+
+    /* Card sizing */
+    .gallery-item,
+    .card-item,
+    .bento-item,
+    .collection-card {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    /* Disable 3D hover effects on mobile */
+    .gallery-item,
+    .card-item,
+    .bento-item {
+        transform: none !important;
+    }
+
+    .gallery-item:hover,
+    .card-item:hover,
+    .bento-item:hover {
+        transform: scale(1.02) !important;
+    }
+
+    /* Card code labels - larger for mobile */
+    .card-code,
+    .card-badge {
+        font-size: 14px !important;
+        padding: 6px 12px !important;
+    }
+
+    /* Price overlay */
+    .card-price,
+    .price-tag {
+        font-size: 16px !important;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .gallery-grid,
+    .cards-grid {
+        padding: 0 12px;
+    }
+
+    .gallery-item,
+    .card-item {
+        max-width: 100%;
+    }
+}
+
+/* ================================
+   3D EFFECTS - MOBILE OPTIMIZATION
+   ================================ */
+
+@media (max-width: 768px) {
+
+    /* Disable complex 3D transforms */
+    .card-3d,
+    .hero-card-3d,
+    .card-scene {
+        transform: none !important;
+        perspective: none !important;
+        transform-style: flat !important;
+    }
+
+    /* Disable parallax */
+    .parallax-layer,
+    .parallax-bg {
+        transform: none !important;
+    }
+
+    /* Simplify shadows */
+    .collection-card,
+    .card-item,
+    .info-card {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* Disable complex animations */
+    .peacock-feather,
+    .floating-diya,
+    .particle,
+    .rangoli-pattern {
+        display: none !important;
+    }
+
+    /* Simplify card flips */
+    .card-flip:hover {
+        transform: none;
+    }
+}
+
+/* ================================
+   FORMS - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+
+    /* Form container */
+    .contact-form,
+    .design-form,
+    form {
+        padding: 24px 16px;
+    }
+
+    /* Stack form fields */
+    .form-grid,
+    .form-row {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    /* Form groups */
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    /* Labels above inputs */
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 15px;
+    }
+
+    /* Touch-friendly inputs */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        min-height: 48px;
+        padding: 14px 16px;
+        font-size: 16px !important;
+        border-radius: 10px;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    /* Larger textarea */
+    .form-group textarea {
+        min-height: 120px;
+    }
+
+    /* Full-width buttons */
+    .form-actions {
+        margin-top: 24px;
+    }
+
+    .form-actions .btn,
+    button[type="submit"] {
+        width: 100%;
+        min-height: 52px;
+        font-size: 16px;
+        justify-content: center;
+    }
+
+    /* Radio/checkbox groups stacked */
+    .radio-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .radio-label {
+        width: 100%;
+        padding: 14px 16px;
+    }
+
+    /* Error messages below fields */
+    .error-message {
+        display: block;
+        font-size: 13px;
+        margin-top: 6px;
+    }
+}
+
+/* ================================
+   BUTTONS & CTAs - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+    .btn {
+        min-height: 48px;
+        padding: 14px 24px;
+        font-size: 15px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-large {
+        min-height: 52px;
+        font-size: 16px;
+    }
+
+    /* Touch feedback */
+    .btn:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+
+    /* WhatsApp CTA buttons */
+    .btn-whatsapp,
+    .btn-whatsapp-large {
+        padding: 16px 24px;
+        font-size: 16px;
+    }
+
+    .btn-whatsapp svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Floating WhatsApp button */
+    .whatsapp-btn {
+        width: 56px;
+        height: 56px;
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .whatsapp-btn svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* Hide tooltip on mobile */
+    .whatsapp-tooltip {
+        display: none !important;
+    }
+
+    /* Disable pulse animations for battery */
+    .whatsapp-btn::before,
+    .whatsapp-btn::after {
+        display: none;
+    }
+}
+
+/* ================================
+   FOOTER - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 50px 0 30px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr !important;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .footer-brand {
+        align-items: center;
+    }
+
+    .footer-brand p {
+        max-width: 100%;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr !important;
+        gap: 30px;
+    }
+
+    .footer-col {
+        text-align: center;
+    }
+
+    .footer-col ul {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer-col a {
+        padding: 8px 0;
+        display: inline-block;
+    }
+
+    /* Social icons centered and larger */
+    .social-links {
+        justify-content: center;
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .social-link {
+        width: 44px;
+        height: 44px;
+    }
+
+    .social-link svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* Footer contact items centered */
+    .footer .contact-item {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Copyright */
+    .footer-bottom {
+        padding-top: 24px;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        font-size: 14px;
+    }
+}
+
+/* ================================
+   FAQ SECTION - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 50px 0;
+    }
+
+    .faq-item {
+        margin-bottom: 12px;
+    }
+
+    .faq-question {
+        padding: 16px 20px;
+        font-size: 15px;
+        min-height: 56px;
+    }
+
+    .faq-answer p {
+        padding: 0 20px 16px;
+        font-size: 14px;
+    }
+}
+
+/* ================================
+   CONTACT PAGE - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+    .contact-main {
+        padding: 50px 0;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px;
+    }
+
+    /* Business info first on mobile */
+    .contact-info-section {
+        order: -1;
+    }
+
+    .contact-form-section {
+        padding: 24px;
+        border-radius: 16px;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    .info-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .phone-link {
+        font-size: 18px !important;
+    }
+}
+
+/* ================================
+   LIGHTBOX/MODAL - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+
+    .lightbox-modal,
+    .modal {
+        padding: 16px;
+    }
+
+    .lightbox-content {
+        max-width: 100%;
+        max-height: 80vh;
+    }
+
+    .lightbox-close,
+    .modal-close {
+        top: 10px;
+        right: 10px;
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+    }
+
+    .lightbox-nav {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* ================================
+   PROCESS/TIMELINE - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+
+    .process-section,
+    .timeline {
+        padding: 50px 0;
+    }
+
+    .timeline-step,
+    .process-step {
+        flex-direction: column;
+        text-align: center;
+        padding: 0;
+    }
+
+    .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    .step-content {
+        text-align: center;
+    }
+
+    .step-icon-wrapper {
+        justify-content: center;
+    }
+
+    .timeline-line,
+    .step-connector {
+        display: none;
+    }
+}
+
+/* ================================
+   FILTER TABS - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+
+    .filter-tabs,
+    .gallery-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 0 16px;
+        gap: 8px;
+    }
+
+    .filter-tabs::-webkit-scrollbar,
+    .gallery-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-tab,
+    .gallery-tab {
+        flex-shrink: 0;
+        min-height: 44px;
+        padding: 10px 20px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+}
+
+/* ================================
+   SECTIONS - MOBILE SPACING
+   ================================ */
+
+@media (max-width: 768px) {
+    section {
+        padding: 50px 0;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .section-header {
+        margin-bottom: 32px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 40px 0;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+}
+
+/* ================================
+   IMAGES - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Lazy load indicator */
+    img[loading="lazy"] {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    img[loading="lazy"].loaded {
+        opacity: 1;
+    }
+}
+
+/* ================================
+   PERFORMANCE - MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+
+    /* Reduce animations for performance */
+    .animate-on-scroll {
+        transition-duration: 0.3s !important;
+    }
+
+    /* Disable complex backdrop filters */
+    .navbar {
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+    }
+
+    /* Reduce box-shadow complexity */
+    .navbar.scrolled {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* Disable will-change on mobile */
+    * {
+        will-change: auto !important;
+    }
+}
+
+/* ================================
+   TOUCH INTERACTIONS
+   ================================ */
+
+@media (hover: none) and (pointer: coarse) {
+
+    /* Replace hover with active for touch devices */
+    .btn:hover,
+    .card-item:hover,
+    .nav-link:hover {
+        transform: none;
+    }
+
+    .btn:active,
+    .card-item:active,
+    .nav-link:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+
+    /* Tap highlight */
+    a,
+    button {
+        -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2);
+    }
+}
+
+/* ================================
+   ACCESSIBILITY
+   ================================ */
+
+/* Skip link for screen readers */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-gold, #D4AF37);
+    color: #000;
+    padding: 8px 16px;
+    z-index: 9999;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Focus indicators */
+@media (max-width: 768px) {
+
+    a:focus,
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: 2px solid var(--color-gold, #D4AF37);
+        outline-offset: 2px;
+    }
+}
+
+/* ================================
+   PRINT STYLES
+   ================================ */
+
+@media print {
+
+    .navbar,
+    .whatsapp-btn,
+    .footer,
+    .hero-cards,
+    .scroll-indicator {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+}

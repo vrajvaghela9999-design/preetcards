@@ -1,0 +1,24 @@
+{
+    "name": "preet-cards",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "build:css": "cat style.css transitions.css mobile-responsive.css > dist/styles-combined.css",
+        "build:js": "terser dist/scripts-combined.js -o dist/scripts.min.js -c -m",
+        "build:optimize": "mkdir -p dist && cat style.css transitions.css mobile-responsive.css > dist/styles-combined.css && cat transitions.js main.js enhancements.js > dist/scripts-combined.js && terser dist/scripts-combined.js -o dist/scripts.min.js -c -m"
+    },
+    "devDependencies": {
+        "cssnano": "^7.1.2",
+        "postcss-cli": "^11.0.1",
+        "terser": "^5.46.0",
+        "vite": "^5.4.0"
+    },
+    "dependencies": {
+        "gsap": "^3.14.2",
+        "three": "^0.182.0"
+    }
+}

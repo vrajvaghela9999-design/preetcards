@@ -1,0 +1,733 @@
+/* ========================================
+   GLOBAL TRANSITIONS & 3D EFFECTS
+   View Transitions, Loading, Footer, WhatsApp
+   ======================================== */
+
+/* ========== CSS View Transitions ========== */
+@view-transition {
+    navigation: auto;
+}
+
+/* Page transition - current page zooms out */
+::view-transition-old(root) {
+    animation: zoomOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform-origin: center center;
+}
+
+/* New page zooms in */
+::view-transition-new(root) {
+    animation: zoomIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform-origin: center center;
+}
+
+@keyframes zoomOut {
+    from {
+        opacity: 1;
+        transform: perspective(1000px) translateZ(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: perspective(1000px) translateZ(-300px) scale(0.9);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: perspective(1000px) translateZ(300px) scale(1.1);
+    }
+
+    to {
+        opacity: 1;
+        transform: perspective(1000px) translateZ(0) scale(1);
+    }
+}
+
+/* ========== Loading Screen ========== */
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: linear-gradient(135deg, #1A0505 0%, #2A0A0A 50%, #1A0505 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* 3D Logo Animation - pieces fly together */
+.loading-logo {
+    position: relative;
+    perspective: 1000px;
+    margin-bottom: 40px;
+}
+
+.logo-letters {
+    display: flex;
+    gap: 5px;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #D4AF37;
+}
+
+.logo-letter {
+    display: inline-block;
+    animation: letterFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+    transform-style: preserve-3d;
+}
+
+@keyframes letterFlyIn {
+    0% {
+        opacity: 0;
+        transform: translateZ(-500px) rotateY(180deg) translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateZ(0) rotateY(0) translateY(0);
+    }
+}
+
+.logo-letter:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.logo-letter:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.logo-letter:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.logo-letter:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+.logo-letter:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+.logo-letter:nth-child(6) {
+    animation-delay: 0.35s;
+}
+
+.logo-letter:nth-child(7) {
+    animation-delay: 0.4s;
+}
+
+.logo-letter:nth-child(8) {
+    animation-delay: 0.45s;
+}
+
+.logo-letter:nth-child(9) {
+    animation-delay: 0.5s;
+}
+
+.logo-letter:nth-child(10) {
+    animation-delay: 0.55s;
+}
+
+.logo-icon-animated {
+    font-size: 3.5rem;
+    margin-right: 10px;
+    animation: iconSpin 1s ease-out 0.6s forwards;
+    opacity: 0;
+    transform: scale(0) rotateY(180deg);
+}
+
+@keyframes iconSpin {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotateY(180deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotateY(90deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotateY(0);
+    }
+}
+
+/* 3D Progress Bar */
+.loading-progress {
+    width: 200px;
+    height: 6px;
+    background: rgba(212, 175, 55, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #D4AF37, #E5C158, #D4AF37);
+    background-size: 200% 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    animation: shimmer 1.5s infinite;
+    box-shadow:
+        0 0 15px rgba(212, 175, 55, 0.5),
+        0 2px 0 rgba(255, 255, 255, 0.2) inset;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.loading-text {
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: rgba(255, 248, 231, 0.6);
+    letter-spacing: 0.2em;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ========== 3D Layered Footer ========== */
+.footer-3d {
+    position: relative;
+    perspective: 1000px;
+    padding: 80px 0 40px;
+    background: linear-gradient(180deg, #1A0505 0%, #0D0303 100%);
+    overflow: hidden;
+}
+
+.footer-3d::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Back Layer - Address */
+.footer-layer-back {
+    position: relative;
+    transform: translateZ(-50px);
+    transform-style: preserve-3d;
+    text-align: center;
+    margin-bottom: 40px;
+    opacity: 0.7;
+}
+
+.address-3d {
+    display: inline-block;
+    padding: 20px 40px;
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: rgba(255, 248, 231, 0.8);
+    line-height: 1.6;
+    transform-style: preserve-3d;
+    transition: all 0.4s ease;
+}
+
+.address-3d:hover {
+    transform: translateZ(20px);
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.address-3d .address-icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.address-3d .address-line {
+    display: block;
+}
+
+.address-3d .address-line strong {
+    color: #D4AF37;
+}
+
+/* Middle Layer - Phone */
+.footer-layer-middle {
+    position: relative;
+    transform: translateZ(0);
+    transform-style: preserve-3d;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.phone-btn-3d {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 40px;
+    background: linear-gradient(145deg, #C41E3A, #8B0000);
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-radius: 60px;
+    transform-style: preserve-3d;
+    transition: all 0.2s ease;
+    box-shadow:
+        0 8px 0 #6B0000,
+        0 15px 30px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.phone-btn-3d::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+    border-radius: 60px;
+    pointer-events: none;
+}
+
+.phone-btn-3d:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 12px 0 #6B0000,
+        0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.phone-btn-3d:active {
+    transform: translateY(4px);
+    box-shadow:
+        0 4px 0 #6B0000,
+        0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.phone-btn-3d .phone-icon {
+    font-size: 1.5rem;
+    animation: phoneRing 2s ease-in-out infinite;
+}
+
+@keyframes phoneRing {
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    5%,
+    15% {
+        transform: rotate(-10deg);
+    }
+
+    10%,
+    20% {
+        transform: rotate(10deg);
+    }
+
+    25% {
+        transform: rotate(0);
+    }
+}
+
+/* Front Layer - Social Icons */
+.footer-layer-front {
+    position: relative;
+    transform: translateZ(50px);
+    transform-style: preserve-3d;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.social-3d-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-3d-link {
+    width: 55px;
+    height: 55px;
+    perspective: 500px;
+    cursor: pointer;
+}
+
+.social-3d-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-3d-link:hover .social-3d-inner {
+    transform: rotateY(180deg);
+}
+
+.social-3d-front,
+.social-3d-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    backface-visibility: hidden;
+}
+
+.social-3d-front {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #D4AF37;
+}
+
+.social-3d-front svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.social-3d-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #D4AF37, #B8860B);
+    color: #1A0505;
+}
+
+.social-3d-back svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* Footer Bottom */
+.footer-3d-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    font-size: 0.9rem;
+    color: rgba(255, 248, 231, 0.5);
+}
+
+/* ========== 3D Floating WhatsApp Button ========== */
+.whatsapp-3d {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9998;
+    width: 60px;
+    height: 60px;
+    perspective: 500px;
+    transform-style: preserve-3d;
+}
+
+.whatsapp-3d-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: whatsappFloat 3s ease-in-out infinite;
+}
+
+@keyframes whatsappFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) translateZ(0);
+    }
+
+    50% {
+        transform: translateY(-10px) translateZ(20px);
+    }
+}
+
+.whatsapp-3d-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    box-shadow:
+        0 8px 0 #0d5c4a,
+        0 15px 30px rgba(37, 211, 102, 0.4);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.whatsapp-3d-link::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.whatsapp-3d-link svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+}
+
+.whatsapp-3d-link:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 13px 0 #0d5c4a,
+        0 25px 40px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-3d-link:active {
+    transform: translateY(3px);
+    box-shadow:
+        0 5px 0 #0d5c4a,
+        0 10px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* Pulse animation */
+.whatsapp-3d::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.5);
+    animation: whatsappPulse 2s ease-out infinite;
+}
+
+@keyframes whatsappPulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* Tooltip */
+.whatsapp-3d-tooltip {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #1A0505;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-3d-tooltip::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: #1A0505;
+}
+
+.whatsapp-3d:hover .whatsapp-3d-tooltip {
+    opacity: 1;
+    visibility: visible;
+    right: 75px;
+}
+
+/* ========== Accessibility - Reduce Motion ========== */
+.reduce-motion-toggle {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    z-index: 9997;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: rgba(26, 5, 5, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 25px;
+    color: rgba(255, 248, 231, 0.7);
+    font-size: 0.75rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.reduce-motion-toggle:hover {
+    opacity: 1;
+    border-color: rgba(212, 175, 55, 0.5);
+}
+
+.reduce-motion-toggle .toggle-icon {
+    font-size: 1rem;
+}
+
+.reduce-motion-toggle.active {
+    background: rgba(212, 175, 55, 0.2);
+    color: #D4AF37;
+}
+
+/* When reduce motion is active */
+body.reduce-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+
+body.reduce-motion ::view-transition-old(root),
+body.reduce-motion ::view-transition-new(root) {
+    animation: none;
+}
+
+/* System preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+    }
+}
+
+/* ========== Mobile Optimization ========== */
+@media (max-width: 768px) {
+
+    /* Reduce animation complexity on mobile */
+    @keyframes zoomOut {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        to {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+    }
+
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(1.05);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .whatsapp-3d {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+    }
+
+    .whatsapp-3d-inner {
+        animation: none;
+    }
+
+    .reduce-motion-toggle {
+        bottom: 85px;
+        right: 20px;
+        padding: 6px 12px;
+        font-size: 0.7rem;
+    }
+
+    .phone-btn-3d {
+        font-size: 1.1rem;
+        padding: 15px 30px;
+    }
+
+    .social-3d-link {
+        width: 48px;
+        height: 48px;
+    }
+
+    .logo-letters {
+        font-size: 2rem;
+    }
+
+    .logo-icon-animated {
+        font-size: 2.5rem;
+    }
+
+    /* Disable 3D on very slow devices */
+    .footer-layer-back,
+    .footer-layer-middle,
+    .footer-layer-front {
+        transform: none;
+    }
+}
+
+/* ========== Lazy Load Animation Classes ========== */
+.lazy-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.lazy-animate.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.lazy-animate-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.lazy-animate-scale.in-view {
+    opacity: 1;
+    transform: scale(1);
+}
