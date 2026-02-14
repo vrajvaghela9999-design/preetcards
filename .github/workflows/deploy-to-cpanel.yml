@@ -1,0 +1,48 @@
+name: Build & Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    name: 🚀 Build & Deploy to cPanel
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1 — Checkout the repository
+      - name: ✅ Checkout repository
+        uses: actions/checkout@v4
+
+      # 2 — Setup Node.js 20
+      - name: 📦 Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # 3 — Install dependencies (clean install)
+      - name: 📥 Install dependencies
+        run: npm ci
+
+      # 4 — Build the project (generates dist/)
+      - name: 🔨 Build project
+        run: npm run build
+
+      # 5 — Copy standalone HTML pages into dist/ (if they exist)
+      - name: 📄 Copy standalone pages into dist/
+        run: |
+          [ -f contact.html ]   && cp contact.html   dist/ || echo "contact.html not found, skipping"
+          [ -f thank-you.html ] && cp thank-you.html  dist/ || echo "thank-you.html not found, skipping"
+
+      # 6 — Deploy dist/ to cPanel via FTP
+      - name: 🚀 Deploy to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/
+          server-dir: public_html/
+          # dry-run: true
