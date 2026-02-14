@@ -30,13 +30,32 @@ jobs:
       - name: 🔨 Build project
         run: npm run build
 
-      # 5 — Copy standalone HTML pages into dist/ (if they exist)
+      # 5 — Copy images into dist/
+      - name: 🖼️ Copy images into dist/
+        run: |
+          if [ -d "images" ]; then
+            cp -r images dist/images
+            echo "✅ Copied images/ into dist/images/"
+          else
+            echo "⚠️ No images/ folder found, skipping"
+          fi
+
+      # 6 — Copy standalone HTML pages into dist/ (if they exist)
       - name: 📄 Copy standalone pages into dist/
         run: |
-          [ -f contact.html ]   && cp contact.html   dist/ || echo "contact.html not found, skipping"
-          [ -f thank-you.html ] && cp thank-you.html  dist/ || echo "thank-you.html not found, skipping"
+          for file in contact.html thank-you.html privacy-policy.html refund-policy.html terms-conditions.html; do
+            if [ -f "$file" ]; then
+              cp "$file" dist/
+              echo "✅ Copied $file"
+            fi
+          done
 
-      # 6 — Deploy dist/ to cPanel via FTP
+      # 7 — Copy .htaccess if it exists
+      - name: 📋 Copy .htaccess into dist/
+        run: |
+          [ -f .htaccess ] && cp .htaccess dist/ && echo "✅ Copied .htaccess" || echo "Skipped .htaccess"
+
+      # 8 — Deploy dist/ to cPanel via FTP
       - name: 🚀 Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
