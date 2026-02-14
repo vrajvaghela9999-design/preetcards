@@ -3,7 +3,7 @@
    3D Animations & Interactivity
    ======================================== */
 
-import './style.css';
+// CSS is loaded via <link> tags in index.html — no import needed
 
 // Gallery image configuration
 const TOTAL_IMAGES = 9;
@@ -374,85 +374,20 @@ function init3DCardEffects() {
     });
 }
 
-/* ========== Form Validation ========== */
+/* ========== Form Setup (HTML POST — no JS submission) ========== */
 function initFormValidation() {
     const form = document.getElementById('contactForm');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Get form data
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-
-        // Basic validation
-        const errors = [];
-
-        if (!data.name || data.name.trim().length < 2) {
-            errors.push('Please enter your full name');
-        }
-
-        if (!data.email || !isValidEmail(data.email)) {
-            errors.push('Please enter a valid email address');
-        }
-
-        if (errors.length > 0) {
-            showFormMessage(errors.join('\n'), 'error');
-            return;
-        }
-
-        // Simulate form submission
-        const button = form.querySelector('button[type="submit"]');
-        const originalText = button.innerHTML;
-        button.innerHTML = '<span>Sending...</span>';
-        button.disabled = true;
-
-        setTimeout(() => {
-            showFormMessage('Thank you for your inquiry! We will contact you within 24 hours.', 'success');
-            form.reset();
-            button.innerHTML = originalText;
-            button.disabled = false;
-        }, 1500);
-    });
-}
-
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-function showFormMessage(message, type) {
-    // Remove existing message
-    const existingMessage = document.querySelector('.form-message');
-    if (existingMessage) {
-        existingMessage.remove();
+    // Set event_date min to today
+    const eventDateInput = form.querySelector('#event_date');
+    if (eventDateInput) {
+        eventDateInput.min = new Date().toISOString().split('T')[0];
     }
 
-    // Create message element
-    const messageEl = document.createElement('div');
-    messageEl.className = `form-message form-message-${type}`;
-    messageEl.textContent = message;
-    messageEl.style.cssText = `
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    animation: fadeIn 0.3s ease;
-    ${type === 'success'
-            ? 'background: rgba(37, 211, 102, 0.1); color: #25D366; border: 1px solid rgba(37, 211, 102, 0.3);'
-            : 'background: rgba(220, 53, 69, 0.1); color: #dc3545; border: 1px solid rgba(220, 53, 69, 0.3);'
-        }
-  `;
-
-    const form = document.getElementById('contactForm');
-    form.insertBefore(messageEl, form.firstChild);
-
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        messageEl.style.opacity = '0';
-        setTimeout(() => messageEl.remove(), 300);
-    }, 5000);
+    // Form submits natively via HTML POST to Web3Forms
+    // No JavaScript interception needed
+    console.log('✅ Contact form ready — native HTML POST to Web3Forms');
 }
 
 /* ========== Smooth Scroll ========== */

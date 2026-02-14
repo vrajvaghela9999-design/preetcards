@@ -3,8 +3,7 @@
    Form handling & Animations
    ======================================== */
 
-import './style.css';
-import './custom-design.css';
+// CSS loaded in HTML
 
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', () => {
